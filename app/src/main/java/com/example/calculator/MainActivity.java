@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView Screen;
     private Button One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Zero;
-    private Button AC, Power, Back, Div, Mul, Plus, Min, Ans, Point, Equal;
+    private Button AC, Power, Raiz, Back, Div, Mul, Plus, Min, Ans, Point, Equal;
     private String input, Answer;
 
     @Override
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Ans = findViewById(R.id.ans);
         Point = findViewById(R.id.point);
         Equal = findViewById(R.id.equal);
+        Raiz = findViewById(R.id.raiz);
     }
 
     public void ButtonClick(View view){
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
             case "x":
                 Solve();
                 input += "*";
+                break;
+            case "√":
+                Solve();
+                input += "√";
                 break;
             case "^":
                 Solve();
@@ -87,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){
                 e.printStackTrace(System.out);
             }
-
         }
 
         else if(input.split("/").length == 2){
@@ -98,7 +102,16 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){
                 e.printStackTrace(System.out);
             }
+        }
 
+        else if(input.split("\\√").length == 2){
+            String number[] = input.split("\\√");
+            try{
+                double raiz = Math.sqrt(Double.parseDouble(number[1]));
+                input = raiz+"";
+            } catch(Exception e){
+                e.printStackTrace(System.out);
+            }
         }
 
         else if(input.split("\\^").length == 2){
@@ -109,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){
                 e.printStackTrace(System.out);
             }
-
         }
 
         else if(input.split("\\+").length == 2){
@@ -120,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){
                 e.printStackTrace(System.out);
             }
-
         }
 
         else if(input.split("-").length > 1){
@@ -140,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
             } catch(Exception e){
                 e.printStackTrace(System.out);
             }
-
         }
         String n[] = input.split("\\.");
         if(n.length > 1){
@@ -150,5 +160,4 @@ public class MainActivity extends AppCompatActivity {
         }
         Screen.setText(input);
     }
-
 }
